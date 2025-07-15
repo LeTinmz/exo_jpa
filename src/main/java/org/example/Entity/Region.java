@@ -7,6 +7,7 @@ import org.example.utils.ClimatEnum;
 import org.hibernate.procedure.spi.ParameterRegistrationImplementor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -17,12 +18,15 @@ import javax.persistence.*;
 public class Region {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     @Column(nullable = false)
     private String name;
     @Column(nullable = false)
     private double surface;
     @Column (nullable = false)
     private ClimatEnum climat;
-
+    @ManyToMany(mappedBy="region")
+    private List<Specie> species;
+    @OneToMany(mappedBy = "region")
+    private List<Observation> observations;
 }

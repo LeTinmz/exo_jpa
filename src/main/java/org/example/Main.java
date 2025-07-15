@@ -23,7 +23,7 @@ public class Main {
         Region region = Region.builder().name("Rhône").surface(125000).climat(ClimatEnum.Préfascite).build();
         Region region2=Region.builder().name("Bretagne").surface(156452123).climat(ClimatEnum.Océanique).build();
 
-            regionDAO.delete(2);
+            regionDAO.delete(2L);
     }
 
 

@@ -17,7 +17,7 @@ public class RegionDAO {
         System.out.println("région " + region.getName() + " créée");
     }
 
-    public Region get(int id) {
+    public Region get(Long id) {
         EntityManager em = emf.createEntityManager();
         try {
             Region region = em.find(Region.class, id);
@@ -56,7 +56,7 @@ public class RegionDAO {
         em.close();
     }
 
-    public void delete(int id) {
+    public void delete(Long id) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         Region region = em.find(Region.class, id);

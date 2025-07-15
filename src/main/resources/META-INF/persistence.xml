@@ -9,7 +9,9 @@
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
         <class>org.example.Entity.Region</class>
-        <class></class>
+        <class>org.example.Entity.Specie</class>
+        <class>org.example.Entity.Observation</class>
+        <class>org.example.Entity.TravelLog</class>
 
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>

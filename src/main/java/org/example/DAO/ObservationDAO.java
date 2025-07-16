@@ -1,7 +1,6 @@
 package org.example.DAO;
 
 import org.example.Entity.Observation;
-import org.example.Entity.Region;
 import org.example.utils.DatabaseManager;
 
 import javax.persistence.EntityManager;
@@ -15,13 +14,14 @@ public class ObservationDAO {
         this.em = DatabaseManager.getEntityManager();
     }
 
-    public void insert(Observation observation) {
+    public Observation insert(Observation observation) {
 
         em.getTransaction().begin();
         em.persist(observation);
         em.getTransaction().commit();
         em.close();
         System.out.println("observation de " + observation.getObserverName() + " créée");
+        return observation;
     }
 
     public Observation get(Long id) {
@@ -48,7 +48,7 @@ public class ObservationDAO {
         return observations;
     }
 
-    public void update(Observation observation) {
+    public Observation update(Observation observation) {
 
         em.getTransaction().begin();
 
@@ -63,6 +63,7 @@ public class ObservationDAO {
 
         em.getTransaction().commit();
         em.close();
+        return observationToUpdate;
     }
 
     public void delete(Long id) {

@@ -1,7 +1,5 @@
 package org.example.DAO;
 
-import org.example.Entity.Observation;
-import org.example.Entity.Specie;
 import org.example.Entity.TravelLog;
 import org.example.utils.DatabaseManager;
 
@@ -16,13 +14,14 @@ public class TravelLogDAO {
         this.em = DatabaseManager.getEntityManager();
     }
 
-    public void insert(TravelLog travelLog) {
+    public TravelLog insert(TravelLog travelLog) {
 
         em.getTransaction().begin();
         em.persist(travelLog);
         em.getTransaction().commit();
         em.close();
         System.out.println("TravelLog " + travelLog.getId() + " créé");
+        return travelLog;
     }
 
     public TravelLog get(Long id) {
@@ -49,7 +48,7 @@ public class TravelLogDAO {
         return travelLogs;
     }
 
-    public void update(TravelLog travelLog) {
+    public TravelLog update(TravelLog travelLog) {
 
         em.getTransaction().begin();
 
@@ -62,6 +61,7 @@ public class TravelLogDAO {
 
         em.getTransaction().commit();
         em.close();
+        return travelLogToUpdate;
     }
 
     public void delete(Long id) {

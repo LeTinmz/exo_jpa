@@ -3,8 +3,8 @@ import org.example.Entity.Region;
 import org.example.utils.DatabaseManager;
 
 import javax.persistence.*;
-import java.sql.SQLException;
 import java.util.List;
+
 public class RegionDAO {
     private final EntityManager em;
 
@@ -12,13 +12,14 @@ public class RegionDAO {
         this.em = DatabaseManager.getEntityManager();
     }
 
-    public void insert(Region region) {
+    public Region insert(Region region) {
 
         em.getTransaction().begin();
         em.persist(region);
         em.getTransaction().commit();
         em.close();
         System.out.println("région " + region.getName() + " créée");
+        return region;
     }
 
     public Region get(Long id) {
@@ -45,7 +46,7 @@ public class RegionDAO {
         return regions;
     }
 
-    public void update(Region region) {
+    public Region update(Region region) {
 
         em.getTransaction().begin();
 
@@ -58,6 +59,7 @@ public class RegionDAO {
 
         em.getTransaction().commit();
         em.close();
+        return regionToUpdate;
     }
 
     public void delete(Long id) {

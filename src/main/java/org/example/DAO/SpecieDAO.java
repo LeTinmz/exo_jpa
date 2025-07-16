@@ -1,7 +1,6 @@
 package org.example.DAO;
 
 import org.example.Entity.Observation;
-import org.example.Entity.Region;
 import org.example.Entity.Specie;
 import org.example.utils.DatabaseManager;
 
@@ -16,13 +15,14 @@ public class SpecieDAO {
         this.em = DatabaseManager.getEntityManager();
     }
 
-    public void insert(Specie specie) {
+    public Specie insert(Specie specie) {
 
         em.getTransaction().begin();
         em.persist(specie);
         em.getTransaction().commit();
         em.close();
         System.out.println("espèce " + specie.getCommonName() + " créée");
+        return specie;
     }
 
     public Specie get(Long id) {
@@ -49,7 +49,7 @@ public class SpecieDAO {
         return species;
     }
 
-    public void update(Specie specie) {
+    public Specie update(Specie specie) {
 
         em.getTransaction().begin();
 
@@ -62,6 +62,7 @@ public class SpecieDAO {
 
         em.getTransaction().commit();
         em.close();
+        return specieToUpdate;
     }
 
     public void delete(Long id) {

@@ -42,7 +42,7 @@ public class TravelLogDAO {
     public List<TravelLog> getAll() {
 
 
-        TypedQuery<TravelLog> query = em.createQuery("SELECT s FROM Specie s", TravelLog.class);
+        TypedQuery<TravelLog> query = em.createQuery("SELECT t FROM TravelLog t", TravelLog.class);
         List<TravelLog> travelLogs = query.getResultList();
 
         em.close();

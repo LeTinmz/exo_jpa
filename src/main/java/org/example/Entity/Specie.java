@@ -36,4 +36,8 @@ public class Specie {
     @OneToMany(mappedBy = "specie")
     private List<Observation> observations;
 
+        @Override
+    public String toString() {
+            return "Specie : " + commonName;
+        }
 }

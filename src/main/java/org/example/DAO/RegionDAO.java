@@ -1,15 +1,19 @@
 package org.example.DAO;
 import org.example.Entity.Region;
+import org.example.utils.DatabaseManager;
 
 import javax.persistence.*;
 import java.sql.SQLException;
 import java.util.List;
 public class RegionDAO {
+    private final EntityManager em;
 
-    private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("jpa");
+    public RegionDAO() {
+        this.em = DatabaseManager.getEntityManager();
+    }
 
     public void insert(Region region) {
-        EntityManager em = emf.createEntityManager();
+
         em.getTransaction().begin();
         em.persist(region);
         em.getTransaction().commit();
@@ -18,7 +22,7 @@ public class RegionDAO {
     }
 
     public Region get(Long id) {
-        EntityManager em = emf.createEntityManager();
+
         try {
             Region region = em.find(Region.class, id);
             if (region == null) {
@@ -32,7 +36,7 @@ public class RegionDAO {
 
 
     public List<Region> getAll() {
-        EntityManager em = emf.createEntityManager();
+
 
         TypedQuery<Region> query = em.createQuery("SELECT r FROM Region r", Region.class);
         List<Region> regions = query.getResultList();
@@ -42,7 +46,7 @@ public class RegionDAO {
     }
 
     public void update(Region region) {
-        EntityManager em = emf.createEntityManager();
+
         em.getTransaction().begin();
 
         Region regionToUpdate = em.find(Region.class, region.getId());
@@ -57,7 +61,7 @@ public class RegionDAO {
     }
 
     public void delete(Long id) {
-        EntityManager em = emf.createEntityManager();
+
         em.getTransaction().begin();
         Region region = em.find(Region.class, id);
         if (region != null) {
